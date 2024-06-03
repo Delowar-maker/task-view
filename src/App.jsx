@@ -1,7 +1,13 @@
+import Footer from "./Footer";
+import Header from "./Header";
+import HeroSection from "./HeroSection";
+
 export default function App() {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <>
+      <Header />
+      <HeroSection />
+      <Footer />
+    </>
   );
 }
