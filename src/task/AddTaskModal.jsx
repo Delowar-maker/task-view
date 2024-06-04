@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export default function AddTaskModal() {
+export default function AddTaskModal({ onSave }) {
   const [task, setTask] = useState({
+    id: crypto.randomUUID(),
     title: "",
     description: "",
     tags: [],
@@ -9,9 +10,10 @@ export default function AddTaskModal() {
     isFavorite: false,
   });
   const handleChange = (e) => {
-    // const { name, value } = e.target;
-    const name = e.targer.value;
-    const value = e.target.value;
+    // let { name, value } = e.target;
+
+    const name = e.target.name;
+    let value = e.target.value;
 
     if (name === "tags") {
       value = value.split(",");
@@ -85,9 +87,9 @@ export default function AddTaskModal() {
                 required
               >
                 <option value="">Select Priority</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
             </div>
           </div>
@@ -97,8 +99,9 @@ export default function AddTaskModal() {
           <button
             type="submit"
             className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
+            onClick={() => onSave(task)}
           >
-            Create new Task
+            Save
           </button>
         </div>
       </form>
