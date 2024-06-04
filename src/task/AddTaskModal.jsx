@@ -1,4 +1,27 @@
+import { useState } from "react";
+
 export default function AddTaskModal() {
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+    tags: [],
+    priority: "",
+    isFavorite: false,
+  });
+  const handleChange = (e) => {
+    // const { name, value } = e.target;
+    const name = e.targer.value;
+    const value = e.target.value;
+
+    if (name === "tags") {
+      value = value.split(",");
+
+      // setTask({ ...task, [name]: [...task.tags, value] });
+    }
+    setTask({ ...task, [name]: value });
+
+    // joi arry thaka thokhon
+  };
   return (
     <>
       <div className="bg-black bg-opacity-70 h-full w-full z-10 absolute top-0 left-0"></div>
@@ -18,6 +41,8 @@ export default function AddTaskModal() {
               type="text"
               name="title"
               id="title"
+              value={task.title}
+              onChange={handleChange}
               required
             />
           </div>
@@ -29,6 +54,8 @@ export default function AddTaskModal() {
               type="text"
               name="description"
               id="description"
+              value={task.description}
+              onChange={handleChange}
               required
             ></textarea>
           </div>
@@ -41,6 +68,8 @@ export default function AddTaskModal() {
                 type="text"
                 name="tags"
                 id="tags"
+                value={task.tags}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -51,6 +80,8 @@ export default function AddTaskModal() {
                 className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
                 name="priority"
                 id="priority"
+                value={task.priority}
+                onChange={handleChange}
                 required
               >
                 <option value="">Select Priority</option>
